@@ -30,9 +30,8 @@ soup = BeautifulSoup(response, 'html.parser')
 #grabbing page title to verify that we were able to successfully get requests from webpage 
 soup.title
 
-#after inspecting the page, it looks like all the tables that contain data we want have id = 'stats'
-tables = soup.find_all('table', {'id':'stats'})
-len(tables)
+#after inspecting the page, it looks like all the tables that contain data we want have class = 'elementor-text-editor elementor-clearfix'
+tables = soup.find_all('div', {'class': 'elementor-text-editor elementor-clearfix'})
 
 #trying to create function to convert html table to pandas dataframe, had to break this into two functions
 
@@ -78,21 +77,20 @@ testing_status = ListToDf(table4, 2)
 
 #creating dataframe for high risk
 table5 = TableToList(tables[4])
-high_risk = ListToDf(table5, 2)
+high_risk = ListToDf(table5[:4], 2)
 
 #creating dataframe for transmission method
-table6 = TableToList(tables[5])
-transmission_method = ListToDf(table6, 2)
+transmission_method = ListToDf(table5[4:], 2)
 
 #creating dataframe for recovery status
-table7 = TableToList(tables[6])
+table6 = TableToList(tables[5])
 
 #ran into an issue convering list to dataframe because website had missing values after 'Recovering in Home' and 'NO LONGER REPORTING', using a rough workaround for now to add "--" to the places where values were missing
-table7.insert(13, '--')
-table7.insert(15, '--')
-recovery_status = ListToDf(table7, 4)
+table6.insert(13, '--')
+table6.insert(15, '--')
+recovery_status = ListToDf(table6, 4)
 
 #creating dataframe for ethnicity
-table8 = TableToList(tables[7])
-ethnicity = ListToDf(table8, 5)
+table7 = TableToList(tables[6])
+ethnicity = ListToDf(table7, 5)
 
