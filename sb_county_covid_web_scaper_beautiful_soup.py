@@ -76,18 +76,24 @@ cases_by_area.replace({'—':0}, inplace = True)
 
 #creating dataframe for recovery status tables
 recovery_status = create_df(1)
+recovery_status.replace({'—':0}, inplace = True)
 
 #creating dataframe for cases by age tables
 cases_by_age = create_df(3)
+cases_by_age.replace({'—':0}, inplace = True)
 
 #creating dataframe for cases by gender tables
 cases_by_gender = create_df(4)
+cases_by_gender.replace({'—':0}, inplace = True)
 
 #creating dataframe for testing status tables
 testing_status = create_df(6)
+testing_status.replace({'—':0}, inplace = True)
 
 #creating dataframe for transmission method tables
 transmission_method = create_df(7)
+transmission_method.replace({'—':0}, inplace = True)
 
 #creating dataframe for cases by race/ethnicity tables
 ethnicity = create_df(9)
+ethnicity.replace({'—':0}, inplace = True)
