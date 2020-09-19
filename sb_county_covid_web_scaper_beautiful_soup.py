@@ -33,7 +33,7 @@ items = soup.find_all('div',{'class':'elementor-accordion-item'})
 master_list = []    #master list with all tables for each date
 date_list = []      #list to store dates where data is available
 index = -1
-for item in items[:60]:     #at 61 this breaks, looks like because there is one less table for each date from that point on 
+for item in items[:74]:     #at 75 this breaks, looks like because there is one less table for each date from that point on 
     index = index + 1       #also getting a value error when testing with just first table: 6 columns passed, passed data had 5 columns
                             #found this is because prior to June 25th, there were only 5 columns in that table (no Still Infectious by Region column)
     tables = item.find_all('table')
