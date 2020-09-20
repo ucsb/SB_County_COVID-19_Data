@@ -173,7 +173,7 @@ def create_forecasts(value):
     fb_df = df[df['Geographic_Area'] == 'Total'][['Date', value]]
     fb_df.columns = ['ds','y']
     
-    #removing any non-numberical characters
+    #removing any non-numerical characters
     fb_df['y'] = fb_df['y'].apply(lambda x: int(re.sub('[^0-9]','',str(x))))
 
     #removing weekends
