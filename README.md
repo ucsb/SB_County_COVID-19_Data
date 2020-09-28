@@ -1,5 +1,6 @@
-# SB_County_COVID-19_Data
-Scraping SB County Public Health Data on COVID-19
+# SB County COVID-19 Data
+* Scraped SB County Public Health [website](https://publichealthsbc.org/status-reports/)      
+* Building an interactive dashboard using dash to visualize and forecast trends in COVID-19 data 
 
 ## Sources Referenced   
 Dash [Styleguide](https://codepen.io/chriddyp/pen/bWLwgP)     
