@@ -25,6 +25,7 @@ response = requests.get(url, headers = headers).text
 soup = BeautifulSoup(response, 'html.parser')
 
 #date data was posted
+
 dates = soup.find_all('a',{'class':'elementor-accordion-title'}) #not sure why this isn't working
 
 #getting the element for each historical date where covid data was posted
@@ -75,7 +76,8 @@ def create_df(x):
 #creating dataframe for cases by area tables, currently cases_by_area is the only csv file being used for the web app        
 cases_by_area = create_df(0)
 cases_by_area.replace({'—':0}, inplace = True)
-#cases_by_area.to_csv('cases_by_area_9-19-20.csv', index = False)
+csvPath = r'\\sa8\data\PowerBI\Covid\cases_by_area.csv'
+cases_by_area.to_csv(csvPath, index = False)
 
 #creating dataframe for recovery status tables
 recovery_status = create_df(1)
