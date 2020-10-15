@@ -1,0 +1,62 @@
+- defaultTab: nodes
+  description: "CovidWebScraper\n\nScrapes data from https://publichealthsbc.org/status-reports/\
+    \ and load into a csv \n\\\\sa8\\data\\PowerBI\\Covid\\cases_by_area.csv.\nPython\
+    \ code is stored in https://github.com/ucsb/SB_County_COVID-19_Data\nexecute python\
+    \ \\\\sa41\\AllContent\\Scripts\\Rundeck\\ReportingTeam\\Python\\SB_County_COVID-19_Data\\\
+    sb_county_covid_web_scaper_beautiful_soup.py"
+  executionEnabled: true
+  group: DataLoads
+  id: 0dadd1e6-6917-4d17-80bf-d2a144ba70e7
+  loglevel: INFO
+  name: CovidWebScraper
+  nodeFilterEditable: false
+  options:
+  - description: Name of python script. I.e. sb_county_covid_web_scaper_beautiful_soup.py
+    label: Python Script
+    name: PYTHONSCRIPT
+    required: true
+    value: SB_County_COVID-19_Data\sb_county_covid_web_scaper_beautiful_soup.py
+  - description: Script args. I.e -h for 'myscript.py -h'
+    label: Python script args
+    name: PYTHONSCRIPTARGS
+    value: Dev
+  - description: Path to python executable without trailing slash. I.e 'D:\Software\python'
+    label: Path to Python
+    name: PYTHONPATH
+    value: D:\AllContent\Scripts\Rundeck\ReportingTeam\python-3.8.2-embed-amd64
+  - description: Path to Script Block.
+    label: Path to scriptblock
+    name: SCRIPTPATH
+    value: d:\AllContent\Scripts\Rundeck\ReportingTeam\Python
+  - description: Turn on extra DEBUG steps (like Verbose). (Y) or blank
+    label: DEBUG
+    name: DEBUG
+    value: Y
+    values:
+    - N
+    - Y
+    valuesListDelimiter: ','
+  plugins:
+    ExecutionLifecycle: null
+  schedule:
+    month: '*'
+    time:
+      hour: '06'
+      minute: '00'
+      seconds: '0'
+    weekday:
+      day: '*'
+    year: '*'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - configuration:
+        Hosts: SA40
+        OSUser: sa\SQLProxy_SA146
+        ScriptPath: d:\AllContent\Scripts\Rundeck\ReportingTeam\Python\RundeckScriptblock_ExecutePythonScript.ps1
+      nodeStep: true
+      type: UCSB-ExecScriptblock
+    keepgoing: false
+    strategy: node-first
+  timeZone: PST
+  uuid: 0dadd1e6-6917-4d17-80bf-d2a144ba70e7

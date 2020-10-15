@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
+
 #specify URL/web page to scrape
 url = 'https://publichealthsbc.org/status-reports/'
 
@@ -87,7 +88,8 @@ recovery_status.replace({'—':0}, inplace = True)
 #creating dataframe for cases by age tables
 cases_by_age = create_df(3)
 cases_by_age.replace({'—':0}, inplace = True)
-#cases_by_age.to_csv('cases_by_age_9-19-20.csv', index = False)
+csvPath = r'\\sa8\data\PowerBI\Covid\cases_by_age_9-19-20.csv'
+#cases_by_age.to_csv(csvPath, index = False)
 
 #creating dataframe for cases by gender tables
 cases_by_gender = create_df(4)
