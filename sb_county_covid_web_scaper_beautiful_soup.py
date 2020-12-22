@@ -8,6 +8,8 @@ Created on Sun Sep 20 13:58:41 2020
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import sys, os
+from pathlib import Path
 
 
 #specify URL/web page to scrape
@@ -31,6 +33,9 @@ dates = soup.find_all('a',{'class':'elementor-accordion-title'}) #not sure why t
 
 #getting the element for each historical date where covid data was posted
 items = soup.find_all('div',{'class':'elementor-accordion-item'})
+
+# variable for csv path
+p = Path("\\\\sa8\\data\\PowerBI\\Covid")
 
 #iterating through available data for each date
 master_list = []    #master list with all tables for each date
@@ -77,7 +82,8 @@ def create_df(x):
 #creating dataframe for cases by area tables, currently cases_by_area is the only csv file being used for the web app        
 cases_by_area = create_df(0)
 cases_by_area.replace({'—':0}, inplace = True)
-csvPath = r'\\sa8\data\PowerBI\Covid\cases_by_area.csv'
+#csvPath = r'\\sa8\data\PowerBI\Covid\cases_by_area.csv'
+csvPath = os.path.join(p,"cases_by_area.csv")
 cases_by_area.to_csv(csvPath, index = False)
 
 #creating dataframe for recovery status tables
@@ -99,6 +105,8 @@ cases_by_gender.replace({'—':0}, inplace = True)
 #creating dataframe for testing status tables
 testing_status = create_df(6)
 testing_status.replace({'—':0}, inplace = True)
+csvPath = os.path.join(p,"testing_status.csv")
+testing_status.to_csv(csvPath, index = False)
 #testing_status.to_csv('testing_status_9-19-20.csv', index = False)
 
 #creating dataframe for transmission method tables
@@ -107,6 +115,6 @@ transmission_method.replace({'—':0}, inplace = True)
 #transmission_method.to_csv('transmission_method_9-19-20.csv', index = False)
 
 #creating dataframe for cases by race/ethnicity tables
-ethnicity = create_df(9)
-ethnicity.replace({'—':0}, inplace = True)
+#ethnicity = create_df(9)
+#ethnicity.replace({'—':0}, inplace = True)
 #ethnicity.to_csv('ethnicity_9-19-20.csv', index = False)
